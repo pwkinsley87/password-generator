@@ -10,10 +10,11 @@ var generatePassword = function() {
 
   var resultArray = [];
   var userArray = [];
-
-  uppercaseArray [1]
-
-  var numCharacter = prompt ("Select a number between 8 and 128 to determine the length of the password.");
+    
+  var numCharacter = parseInt(prompt ("Select a number between 8 and 128 to determine the length of the password."))
+    while(numCharacter< 8 || numCharacter>128 || isNaN(numCharacter)){
+    numCharacter = parseInt(prompt ("Select a number between 8 and 128 to determine the length of the password."))
+  }
   var numbers = confirm ("Should we include numbers?");
   var uppercases = confirm ("Should we include uppercase characters?");
   var lowercases = confirm ("Should we include lowercase characters?");
@@ -52,4 +53,4 @@ var generatePassword = function() {
 
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
+generateBtn.addEventListener("click", writePassword);
