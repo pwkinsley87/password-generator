@@ -1,65 +1,55 @@
-const characterAmountRange = document.getElementById('characterAmountRange')
-const characterAmountNumber = document.getElementById('characterAmountNumber')
-const form = document.getElementById('passwordGeneratorForm')
-const includeUppercaseElement = document.getElementById('includeUppercase')
-const includeNumbersElement = document.getElementById('includeNumbers')
-const includeSymbolsElement = document.getElementById('includeSymbols')
-const passwordDisplay = document.getElementById('passwordDisplay')
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 
-const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
-const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
-const NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
-const SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(
-  arrayFromLowToHigh(58, 64)
-).concat(
-  arrayFromLowToHigh(91, 96)
-).concat(
-  arrayFromLowToHigh(123, 126)
-)
 
-characterAmountNumber.addEventListener('input', syncCharacterAmount)
-characterAmountRange.addEventListener('input', syncCharacterAmount)
+var generatePassword = function() {
+  var uppercaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var lowercaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",  "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var numberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var characterArray = ["@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"];
 
-form.addEventListener('submit', e => {
-  e.preventDefault()
-  const characterAmount = characterAmountNumber.value
-  const includeUppercase = includeUppercaseElement.checked
-  const includeNumbers = includeNumbersElement.checked
-  const includeSymbols = includeSymbolsElement.checked
-  const password = generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols)
-  passwordDisplay.innerText = password
+  var resultArray = [];
+  var userArray = [];
 
-})
+  uppercaseArray [1]
 
-function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
-  console.log(LOWERCASE_CHAR_CODES)
-  let charCodes = LOWERCASE_CHAR_CODES
-  if (includeUppercase) charCodes = charCodes.concat
-  (UPPERCASE_CHAR_CODES)
-  if (includeNumbers) charCodes = charCodes.concat
-  (NUMBER_CHAR_CODES)
-  if (includeSymbols) charCodes = charCodes.concat
-  (SYMBOL_CHAR_CODES)
-  const passwordCharacters = []
-  for (let i = 0; i < characterAmount; i++) {
-    const characterCode = charCodes[Math.floor(Math.random() *
-      characterAmount)]
-    passwordCharacters.push(String.fromCharCode(characterCode))
+  var numCharacter = prompt ("Select a number between 8 and 128 to determine the length of the password.");
+  var numbers = confirm ("Should we include numbers?");
+  var uppercases = confirm ("Should we include uppercase characters?");
+  var lowercases = confirm ("Should we include lowercase characters?");
+  var characters = confirm ("Should we include special characters?");
+
+  if (numbers){
+    resultArray = resultArray.concat(numberArray);  
+  }  
+  if (uppercases){
+    resultArray = resultArray.concat(uppercaseArray);
+  }  
+  if (lowercases){
+    resultArray = resultArray.concat(lowercaseArray);
+  }  
+  if (characters){
+    resultArray = resultArray.concat(characterArray);
   }
-  return passwordCharacters.join('')
-
-}
-
-function arrayFromLowToHigh(low, high) {
-  const array = []
-  for (let i = low; i <= high; i++) {
-    array.push(i)
+  console.log(resultArray)
+  
+  
+  for (var i = 0; i < numCharacter; i++) {  
+    userArray.push (resultArray[Math.floor(Math.random() * resultArray.length)]); 
+    }
+  
+    return userArray.join("") ;
   }
-  return array
-}
+  
+  // Write password to the #password input
+  function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.value = password;
+  };
 
-function syncCharacterAmount(e) {
-  const value = e.target.value
-  characterAmountNumber.value = value
-  characterAmountRange.value = value
-};
+
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", generatePassword);
