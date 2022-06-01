@@ -4,7 +4,7 @@ The goal of this project was to create a program that would generate a random pa
 
 The remote repository for the project can be found at: github.com/pwkinsley87/password-generator
 
-The project is live-deployed at the following address: 
+The project is live-deployed at the following address: https://pwkinsley87.github.io/password-generator/
 
 
 
